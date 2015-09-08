@@ -1,9 +1,16 @@
-<h2>Search Results Go here</h2>	
-<div ng-if="!movieList.details">
+<h2>Search Results Go here</h2>
+
+<!-- I cannot effing get ng-if to effing work. :(	 -->
+<div ng-if="movieList.details">
 	Loading Results...
 	<!-- animation maybe? -->
 </div>	
 
-<div ng-if="movieList.details.total_results !=0"> <!-- //check if results exist -->
+<!-- <div ng-if="movieList.details.total_results!='undefined'">  -->
+	
+	<h1>you searched for:</h1>
+	<strong> {{movieList.actorName}}</strong>
+	<h3>He's been in:</h3>
+	<blockquote> </blockquote>
 	<p>{{movieList.details.results[0]}}</p>
-</div>
+<!-- </div> -->
