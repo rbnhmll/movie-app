@@ -32,6 +32,31 @@
 				console.log(res1.imageFaces[0].identity.name);
 			})
 		});
+
+		// $(function(){
+
+		// 	var apiKey = '5501ee5779474542bcf8ab403516bf9ae73f5a82';
+			
+		// 	var call2 = $.ajax({
+		// 		url: 'http://access.alchemyapi.com/calls/image/ImageGetRankedImageFaceTags',
+		// 		type: "GET",
+		// 		dataType: "json",
+		// 		data: {
+		// 			apikey: apiKey,
+		// 			image: 'test-images/pepper_potts.png',
+		// 			//Apparently you can't link to a local file, but I thought I'd try
+		// 			//Must figure out how to POST an image
+		// 			imagePostMode: 'raw',
+		// 			outputMode: 'json',
+		// 			knowledgeGraph: 1
+		// 		}
+		// 	});
+
+		// 	$.when(call2).then(function(res2) {
+		// 		console.log(res2);
+		// 		// console.log(res2.imageFaces[0].identity.name);
+		// 	})
+		// });
 	</script>
 </body>
 </html>
