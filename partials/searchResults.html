@@ -1,0 +1,9 @@
+<h2>Search Results Go here</h2>	
+<div ng-if="!movieList.details">
+	Loading Results...
+	<!-- animation maybe? -->
+</div>	
+
+<div ng-if="movieList.details.total_results !=0"> <!-- //check if results exist -->
+	<p>{{movieList.details.results[0]}}</p>
+</div>
