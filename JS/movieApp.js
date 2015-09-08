@@ -34,7 +34,7 @@ angular.module('movieApp',[])
 			// get name
 			movieList.actorName = movieObject.results[0].name;
 			// get array of information
-			movieList.relatedInfo = movieObject.results[0].known_for;
+			movieList.relatedInfo = movieObject.results[0].known_for; 
 			console.log(movieList.relatedInfo);
 			console.log('exiting infoBuilder');
 		};
