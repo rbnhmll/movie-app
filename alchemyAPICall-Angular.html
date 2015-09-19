@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<section class="actor-name" ng-model="PhotoApp">
+		<h2 class="actor-name"></h2>
+	</section>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+
+	var app = angular.module("PhotoApp", []);
+
+			app.factory('actor', function($http, $q) {
+				var apiKey = '5501ee5779474542bcf8ab403516bf9ae73f5a82';
+				var imageUrl = 'http://claudinhastoco.com/wp-content/uploads/2013/11/favoritos-Amanda-Seyfried-1.jpg';
+				var endPoint = 'http://access.alchemyapi.com/calls/image/ImageGetRankedImageFaceTags';
+
+				return {
+					getActor: function() {
+						var def = $q.defer();
+						
+						$http
+							.get(endPoint + '?apikey=' + apiKey + '&image=' + imageUrl + '&imagePostMode=raw -&outputMode=json&knowledgeGraph=1')
+							.success(def.resolve)
+							.error(def.reject);
+
+						return def.promise;
+						console.log(actor);
+					}
+				}
+
+			});
+
+
+
+
+
+		// $(function(){
+
+		// 	var apiKey = '5501ee5779474542bcf8ab403516bf9ae73f5a82';
+		// 	var imageUrl = 'http://claudinhastoco.com/wp-content/uploads/2013/11/favoritos-Amanda-Seyfried-1.jpg';
+			
+		// 	var call1 = $.ajax({
+		// 		url: 'http://access.alchemyapi.com/calls/image/ImageGetRankedImageFaceTags',
+		// 		type: "GET",
+		// 		dataType: "json",
+		// 		data: {
+		// 			outputMode: 'json',
+		// 			url: imageUrl,
+		// 			apikey: apiKey,
+		// 			knowledgeGraph: 1
+		// 		}
+		// 	});
+
+		// 	$.when(call1).then(function(res1) {
+		// 		console.log(res1);
+		// 		console.log(res1.imageFaces[0].identity.name);
+		// 	})
+		// });
+	</script>
+</body>
+</html>
