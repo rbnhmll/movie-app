@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Alchemy API Prototype</title>
+</head>
+<body ng-app="photoApp">
+
+	<form action="" class="collect">
+		<h3>Input a image URL below:</h3>
+		<input type="text" class="imageUrl">
+		<input type="submit" class="imageSubmit">
+	</form>
+
+	<section class="actor-name-container" ng-controller="actorController">
+		<h2 class="actor-name">{{ name }}</h2>
+	</section>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+
+	var photoApp = angular.module('photoApp',[]);
+	var imageUrl = ""; //Image location
+	
+	var imgurToken = "db4e13f3d6c752f"; // imgur Client ID
+	var imgurSecret = "068dac5a40ab02e6794bf26ee1bf1a08c3658608"; // imgur Client Secret
+	var imgurEndpoint = "https://api.imgur.com/3/";
+	// Be sure to update Imgur Authorization callback URL in applications section of account settings.
+
+
+
+
+
+
+
+
+		photoApp.controller('actorController', function($http, $scope){
+			$(".collect").submit(function(e) { //grab URL from input field. This is a temp feature.
+				e.preventDefault();
+				imageUrl = $(".imageUrl").val();
+				fetch();	
+			});
+			
+			var actorName = this; // scope controlled variable
+			// var waitForMe;
+			if(actorName.search === undefined){
+				console.log("not grabbing");
+			}
+
+			function fetch(){
+				var endPoint = 'http://access.alchemyapi.com/calls/image/ImageGetRankedImageFaceTags';
+				var apiKey = '5501ee5779474542bcf8ab403516bf9ae73f5a82';
+
+				console.log("grabbing results!");
+				$http.get(endPoint
+					+ '?apikey='
+					+ apiKey 
+					+ '&method=GET&url='
+					+ imageUrl
+					+ '&imagePostMode=raw -&outputMode=json&knowledgeGraph=1')
+				.success(function(response){
+					actorName.details = response;
+					console.log("returning Results!");
+					var profile = actorName.details;
+					var name = profile.imageFaces[0].identity.name;
+					console.log(name);
+					// $(".actor-name").append("The celebrity is " + name);
+					$scope.name = `The celebrity is ${name}`;
+				})
+				.error(function() {
+						console.log("Sorry, we fuckedup!");
+				});
+			};
+		}); //end controller
+
+	</script>
+</body>
+</html>
